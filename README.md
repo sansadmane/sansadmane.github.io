@@ -1,2 +1,3 @@
 # sansadmane.github.io
-This is my personal and professional website!
+This is my official website. Have a look around :) 
+Always a work in progress.
