@@ -40,5 +40,32 @@
         I also love hammocking, especially on outdoor trips. During OSU's trip to Greenbank Observatory in March 2023, I stayed in a hammock for the weekend. I woke up to the sunrise, which was beautiful.
     </p>
 </div>
+<script>
+// Define the Konami Code sequence
+const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+
+let konamiCodeIndex = 0;
+
+// Function to handle key presses
+function handleKeyPress(event) {
+  // Check if the pressed key matches the current position in the Konami Code sequence
+  if (event.key === konamiCode[konamiCodeIndex]) {
+    konamiCodeIndex++;
+    // Check if the entire Konami Code sequence has been entered
+    if (konamiCodeIndex === konamiCode.length) {
+      // Redirect the user to another webpage (e.g., https://example.com)
+      window.location.href = 'bday.html';
+      // Reset the code index for future use
+      konamiCodeIndex = 0;
+    }
+  } else {
+    // Reset the code index if the wrong key is pressed
+    konamiCodeIndex = 0;
+  }
+}
+
+// Add event listener for keydown event
+document.addEventListener('keydown', handleKeyPress);
+</script>
 </body>
 </html>
