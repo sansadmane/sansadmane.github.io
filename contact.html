@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="stylesheet.css">
+<meta name="viewport" content="width=device-width, initial-scale=1" /> 
+
+<title> Contact Me! </title>
+
+</head>
+
+<header>
+<div class="box"></div>
+</header>
+
+<body>
+<div class="intro-container">
+  <h1><span class="highlight">Get in Touch!</span></h1>
+  <div class="link-list">
+    <a href=“sanskruti@rice.edu”><b>sanskruti@rice.edu</b></a>
+    <a href=“linkedin.com/in/sanskrutiadmane”><b>LinkedIn</b></a>
+    <a href=“https://github.com/sansadmane”><b>GitHub</b></a>
+    <a href="" target=_blank><b>Resume (Coming Soon)</b></a>
+  </div>
+</div>
+
+</body>
+
+<script>
+  window.addEventListener("scroll", () => {
+    const box = document.querySelector(".box");
+    let scrollY = window.scrollY;
+
+    // Clamp scroll influence
+    let maxScroll = 1000;
+    let progress = Math.min(scrollY / maxScroll, 1); // value between 0–1
+
+    // Dynamic sizes
+    let baseSize = 50;
+    let size = baseSize + progress * 100; // grows with scroll
+    let p = 25 + progress * 40;           // wave spread increases
+    let R = Math.sqrt(size * size + p * p);
+
+    // Dynamic height
+    let newHeight = 200 + progress * 500;
+
+
+    // Apply values
+    box.style.setProperty("--size", `${size}px`);
+    box.style.setProperty("--p", `${p}px`);
+    box.style.setProperty("--R", `${R}px`);
+    box.style.height = `${newHeight}px`;
+    box.style.background = `linear-gradient(90deg, hsl(${hue}, 80%, 60%), hsl(${(hue + 60) % 360}, 80%, 60%))`;
+  });
+</script>
+
+
+</html>
+
