@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" /> 
 
 <title> Sanskruti Admane </title>
+
 </head>
 
 <header>
@@ -12,38 +13,46 @@
 </header>
 
 <body>
-<p>
-<center>
-<h1> Hi! I'm Sanskruti Admane.</h1>
-</center>
-</p>
-<div class = "column">
-<p>
-I'm a <b><a href = "aboutme.html">PhD student</a></b> at Rice University, in the EEPS (Earth, Environmental, and Planetary Sciences) Department. I graduated magna cum laude from Ohio State University with a B.S. in <b><a>Physics and Astronomy</a></b>, and a minor in <b><a>computer science</a></b>. 
-<br><br>
-During my time in undergrad, I researched <b><a>terrestrial planet formation</a></b> with Dr. Seth Jacobson at Michigan State University. I was working on quantifying debris production in imperfect accretion scenarios. For a formal discussion of this research, I have a paper in prep. I am currently working with Dr. Andre Izidoro to further investigate different aspects of Solar System formation.
-<br>
-</p>
+<div class="intro-container">
+  <h1>Hi, I'm <span class="highlight">Sanskruti Admane</span></h1>
+  <div class="link-list">
+    <a href="aboutme.html"><b>About Me</b></a>
+    <a href="research.html"><b>Research/Projects</b></a>
+    <a href="outreach.html"><b>Outreach</b></a>
+    <a href="contact.html" target="_blank"><b>Contact Me!</b></a>
+  </div>
 </div>
 
-<div class = "column">
-<p>
-<img src = "cuwipPoster.jpeg" alt="Me with a Research Poster January 2023" style="width:100%;height:auto;">
-<center>
-<h3>This is me presenting my planetary science research at Brown University in January 2023.</h3>
-</center>
-</p>
-</div>
-<div class = "column">
-  <div class="dropdown">
-    <span><b>Menu</b></span>
-  <div class="dropdown-content">
-    <p><a href = "aboutme.html">About Me!</a></p>
-    <p><a href = "outreach.html">Outreach!</a></p>
-  </div>
-  </div>
-</div>
 </body>
+
+<script>
+  window.addEventListener("scroll", () => {
+    const box = document.querySelector(".box");
+    let scrollY = window.scrollY;
+
+    // Clamp scroll influence
+    let maxScroll = 1000;
+    let progress = Math.min(scrollY / maxScroll, 1); // value between 0–1
+
+    // Dynamic sizes
+    let baseSize = 50;
+    let size = baseSize + progress * 100; // grows with scroll
+    let p = 25 + progress * 40;           // wave spread increases
+    let R = Math.sqrt(size * size + p * p);
+
+    // Dynamic height
+    let newHeight = 200 + progress * 500;
+
+
+    // Apply values
+    box.style.setProperty("--size", `${size}px`);
+    box.style.setProperty("--p", `${p}px`);
+    box.style.setProperty("--R", `${R}px`);
+    box.style.height = `${newHeight}px`;
+    box.style.background = `linear-gradient(90deg, hsl(${hue}, 80%, 60%), hsl(${(hue + 60) % 360}, 80%, 60%))`;
+  });
+</script>
+
 
 </html>
 
