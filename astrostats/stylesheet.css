@@ -1,0 +1,223 @@
+/* =========================
+   RESET + GLOBAL STYLES
+========================= */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box; /* Ensure padding and borders don't mess with layout */
+}
+
+html, body {
+  height: 100%; /* Full height for body */
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* =========================
+   HEADER STYLES
+========================= */
+header {
+  position: absolute;
+  top: 0;
+  z-index: 999;
+  background-color: white;
+  height: 60px; /* Initial height of header */
+  transition: height 0.3s ease;
+  width: 100%; /* Ensure header spans full width */
+}
+
+header.scrolled {
+  height: 150px; /* Height when scrolled */
+}
+
+header .box {
+  --size: 50px;
+  --p: 40px;
+  --R: 64.03px;
+  position: sticky; /* Position the box relative to header */
+  top: 0px; /* Place it below the header */
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(90deg, red, purple);
+  border: none;
+
+  -webkit-mask:
+    radial-gradient(var(--R) at 50% calc(100% - (var(--size) + var(--p))), blue 99%, #0000 101%) 
+    calc(50% - 2*var(--size)) 0 / calc(4*var(--size)) 100%,
+    radial-gradient(var(--R) at 50% calc(100% + var(--p)), #0000 99%, red 101%) 
+    50% calc(100% - var(--size)) / calc(4*var(--size)) 100% repeat-x;
+}
+
+/* =========================
+   CENTERED INTRO TEXT
+========================= */
+.intro-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 1000;
+  color: black;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.intro-container h1 {
+  font-size: 6rem;
+  margin-bottom: 1rem;
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.highlight {
+  color: #ff6f61;
+}
+
+/* =========================
+   FADE-IN ANIMATION
+========================= */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   LINKS STYLES WITH ANIMATIONS
+========================= */
+.link-list a {
+  color: white;
+  font-size: 1.2rem;
+  padding: 8px 12px;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.link-list a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0%;
+  background-color: #ffb6b6;
+  transition: width 0.3s ease;
+}
+
+.link-list a:hover::after {
+  width: 100%;
+}
+
+.link-list a:hover {
+  transform: translateY(-3px);
+}
+
+/* =========================
+   COLUMNS LAYOUT (FLOAT)
+========================= */
+/* FLEXBOX layout for columns */
+.row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.column {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+  padding: 20px;
+  flex: 1 1 30%;
+  margin: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  .column {
+    flex: 1 1 100%;
+  }
+}
+
+/* =========================
+   BODY CONTENT STYLES
+========================= */
+body {
+  padding-top: 200px; /* Space for header and wave decoration */
+}
+
+p {
+  margin: 20px;
+}
+/* =========================
+   FOOTER STYLES
+========================= */
+footer {
+  background-color: #ff6f61; /* Matching the intro highlight color */
+  color: white;
+  padding: 20px 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-links {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: white;
+  font-size: 1.2rem;
+  padding: 10px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #9c27b0; /* Secondary accent color on hover */
+}
+
+footer p {
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+/* Ensure footer stays at the bottom */
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding-bottom: 0px; /* Footer space */
+}
+
+main {
+  flex-grow: 1; /* Allow main content to grow and push footer to the bottom */
+}
+
+
+
+/* =========================
+   LINKS STYLES (HOVER)
+========================= */
+a:link,
+a:visited {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: DarkSalmon;
+}
