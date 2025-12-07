@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="sansadmane.github.io/stylesheet.css">
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<title>Chapter 12: Spatial Point Processes</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Menu container */
+    .menu {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+    }
+
+    /* Button */
+    .menu button {
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    /* Dropdown content */
+    .dropdown {
+        display: none;
+        position: absolute;
+        right: 0;
+        background: #fff;
+        border: 1px solid #ccc;
+        min-width: 150px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        z-index: 10;
+    }
+
+    .dropdown a {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        color: #333;
+    }
+
+    .dropdown a:hover {
+        background: #f0f0f0;
+    }
+
+    /* Show the menu when hovering */
+    .menu:hover .dropdown {
+        display: block;
+    }
+</style>
+</head>
+<body>
+
+<!-- TOP RIGHT DROPDOWN -->
+<div class="menu">
+    <button>Chapters</button>
+    <div class="dropdown">
+	<a href="index.html">Main Page</a>
+        <a href="ch1.html">Chapter 1</a>
+        <a href="ch5.html">Chapter 5</a>
+        <a href="ch6.html">Chapter 6</a>
+	<a href="ch7.html">Chapter 7</a>
+        <a href="ch8.html">Chapter 8</a>
+        <a href="ch9.html">Chapter 9</a>
+        <a href="ch10.html">Chapter 10</a>
+        <a href="ch11.html">Chapter 11</a>
+    </div>
+</div>
+
+<h1>Spatial Point Processes</h1>
+<p>Spatial point process analysis concerns datasets where events occur at specific spatial locations. The goal is to determine whether the pattern is random, clustered, or regular, and model the influence of spatial covariates or interactions between points.</p>
+
+<h2>Concepts and Definitions</h2>
+<p>A spatial point pattern consists of a set of points observed in a bounded region. Key objectives include describing the pattern, testing spatial randomness, modeling intensity functions, and estimating interactions.</p>
+
+<ul>
+<li>Complete Spatial Randomness (CSR): A homogeneous Poisson process with constant intensity.</li>
+<li>Inhomogeneous Poisson Process (IPP):Intensity varies over space.</li>
+<li>Cluster Processes:Points arise around parent points, producing aggregation.</li>
+</ul>
+
+<h2>Methods</h2>
+<p>Intensity Function: The average number of points per unit area. Homogeneous processes have constant intensity, while heterogeneous processes allow spatially varying intensity.</p>
+<p>Nearest-Neighbor Distances: Short distances suggest clustering; long distances suggest repulsion.</p>
+
+<p>Ripley's K-Function: Measures the spatial dependence of points at increasing radii. Under CSR, \(K(r) = \pi r^2\). Values above or below this indicate clustering or inhibition.</p>
+
+<h3>Moran’s I (Spatial Autocorrelation)</h3>
+
+<p>
+Moran’s I measures the degree of <em>spatial autocorrelation</em>, indicating whether nearby spatial units tend to have 
+similar or dissimilar values. It is widely used to assess clustering or dispersion in spatial data.
+</p>
+
+This is how to interpret the results of applying Moran's I to data:
+<ul>
+<li>\( I > 0 \): Positive spatial autocorrelation (nearby areas are similar; clustering).</li>
+<li>\( I = 0 \): No spatial autocorrelation (spatial randomness).</li>
+<li>\( I < 0 \): Negative spatial autocorrelation (nearby areas are dissimilar; checkerboard pattern).</li>
+</ul>
+
+<h4>Expected Value Under Spatial Randomness</h4>
+<p>
+Under the null hypothesis of complete spatial randomness (CSR), the expected value is:
+\[
+E[I] = -\frac{1}{n-1}
+\]
+</p>
+
+We use Moran's I to:
+<ul>
+<li>Detecting spatial clustering or dispersion patterns.</li>
+<li>Assessing spatial dependence before fitting spatial models (SAR, CAR, etc.).</li>
+<li>Evaluating residual autocorrelation in spatial regression models.</li>
+</ul>
+
+
+
+</body>
+
+<footer>
+<a href="ch11.html">Previous</a>
+</footer>
+</html>
+</html>

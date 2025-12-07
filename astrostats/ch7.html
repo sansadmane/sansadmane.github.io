@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="sansadmane.github.io/stylesheet.css">
+<title>Chapter 7: Regression</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Menu container */
+    .menu {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+    }
+
+    /* Button */
+    .menu button {
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    /* Dropdown content */
+    .dropdown {
+        display: none;
+        position: absolute;
+        right: 0;
+        background: #fff;
+        border: 1px solid #ccc;
+        min-width: 150px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        z-index: 10;
+    }
+
+    .dropdown a {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        color: #333;
+    }
+
+    .dropdown a:hover {
+        background: #f0f0f0;
+    }
+
+    /* Show the menu when hovering */
+    .menu:hover .dropdown {
+        display: block;
+    }
+</style>
+</head>
+<body>
+
+<!-- TOP RIGHT DROPDOWN -->
+<div class="menu">
+    <button>Chapters</button>
+    <div class="dropdown">
+	<a href="index.html">Main Page</a>
+        <a href="ch1.html">Chapter 1</a>
+        <a href="ch5.html">Chapter 5</a>
+        <a href="ch6.html">Chapter 6</a>
+        <a href="ch8.html">Chapter 8</a>
+        <a href="ch9.html">Chapter 9</a>
+        <a href="ch10.html">Chapter 10</a>
+        <a href="ch11.html">Chapter 11</a>
+        <a href="ch12.html">Chapter 12</a>
+    </div>
+</div>
+
+<h1>Regression</h1>
+<p>
+Astronomers use regression but we often don't really think about the model. This is a reminder to really understand what is going in to the construction of the model and how to compare it to others - how fussy should we be? Main uses of regression include fitting data for forecasting, or controlling future behavior, or even for policy change decision making!
+</p>
+
+<ul>
+
+<li>Linear regression models the relationship between a response variable \(Y\) and predictors \(X_1, \dots, X_p\):
+\[
+Y = \beta_0 + \beta_1 X_1 + \dots + \beta_p X_p + \varepsilon
+\]
+where \(\varepsilon\) is the error term, usually with mean 0 and variance \(\sigma^2\).<br>
+In structural models (which are distributions with measure quantities), the X's are random variables, while in functional models, they are deterministic. 
+</li>
+<li>
+We also care about the scatter about the regression line itself. \(\varepsilon\) = 0 only if the functional relationship is perfect. It captures the intrinsic scatter, when Y values do not fall exactly on the parametric curve f, and represents the measurement error when the values of Y lie precisely on the curve.
+</li>
+<li>Once a model has been chosen, a method must also be chosen for parameter estimation. A commonly used method is least squares. Let's look at these methods!</li>
+<li>Ordinary Least Squares (OLS) estimates coefficients by minimizing the sum of squared residuals:
+\[
+\hat{\boldsymbol{\beta}} = \min_{\boldsymbol{\beta}} \sum_{i=1}^{n} (Y_i - \beta_0 - \beta_1 X_{i})^2
+\]
+<br>OLS assumptions: linearity, independence, constant variance (homoscedasticity), and normal errors. This method is sensitive to outliers. In general, we can use OLS when x is known and there is uncertainty in y.
+<li> Symmetric least-squares regression handles uncertainties in both y and x. A commonly used procedure is Pearson's orthogonal regression</li>
+<li>Robust statistics try to reduce the influence of outliers when we don't know the identity of them. Example: M-estimators solve
+\[
+{\boldsymbol{\beta}} \sum_{i=1}^{n} \rho(Y_i - X_i^\top \boldsymbol{\beta}) = 0
+\]
+where \(\rho\) is a loss function. Sometimes, estimators trim the dataset that have residuals higher than a chosen value (trimmed estimator) or sets all larger residuals to a chosen value (Huber estimator). </li>
+
+<li> Quantile regression takes into consideration the distribution of Y values about the mean. This distribution could be uniform, Gaussian or asymmetrical.</li>
+
+<li>Maximum Likelihood Estimation (MLE) for normally distributed errors (\(\varepsilon_i \sim N(0,\sigma^2)\)) gives:
+\[
+L(\boldsymbol{\beta}, \sigma^2) = \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi\sigma^2}} \exp\Big[-\frac{(Y_i - X_i^\top \boldsymbol{\beta})^2}{2\sigma^2}\Big]
+\]
+Note that MLE assumes the model works and that the points are deviant due to error in the points.</li>
+
+<li>Weighted Least Squares (WLS) accounts for heteroscedasticity. The method is used when the errors are independent but not identically distributed. The variance differs for different points, but the weight is distributed according the the normal distribution.
+
+</li>
+
+<li>Nonlinear regression models cases where \(Y\) depends on predictors in a nonlinear way:
+\[
+Y = f(X, \boldsymbol{\beta}) + \varepsilon
+\]
+Parameters are estimated by minimizing
+\[
+\hat{\boldsymbol{\beta}} = {\boldsymbol{\beta}} \sum_{i=1}^{n} (Y_i - f(X_i, \boldsymbol{\beta}))^2 = 0
+\]
+</li>
+
+</ul>
+
+</body>
+
+<footer>
+<a href="ch6.html">Previous</a> OR <a href="ch8.html">Next Chapter</a>
+</footer>
+</html>
+</html>

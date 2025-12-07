@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="sansadmane.github.io/stylesheet.css">
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<title>Introductory Concepts</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .menu {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+    }
+
+    .menu button {
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .dropdown {
+        display: none;
+        position: absolute;
+        right: 0;
+        background: #fff;
+        border: 1px solid #ccc;
+        min-width: 150px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        z-index: 10;
+    }
+
+    .dropdown a {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        color: #333;
+    }
+
+    .dropdown a:hover {
+        background: #f0f0f0;
+    }
+
+    .menu:hover .dropdown {
+        display: block;
+    }
+</style>
+</head>
+<body>
+
+<!-- TOP RIGHT DROPDOWN -->
+<div class="menu">
+    <button>Chapters</button>
+    <div class="dropdown">
+        <a href="index.html">Main Menu</a>
+        <a href="ch5.html">Chapter 5</a>
+        <a href="ch6.html">Chapter 6</a>
+        <a href="ch7.html">Chapter 7</a>
+        <a href="ch8.html">Chapter 8</a>
+        <a href="ch9.html">Chapter 9</a>
+        <a href="ch10.html">Chapter 10</a>
+        <a href="ch11.html">Chapter 11</a>
+        <a href="ch12.html">Chapter 12</a>
+    </div>
+</div>
+
+<p>This page covers the concepts of Chapters 1–4, which are overviews of introductory probability concepts useful for anyone working with data.</p>
+
+<h1>Brief Definitions of Topics</h1>
+<p>
+<ul>
+<li> An experiment is an action that can have a set of possible results where the result cannot be predicted with certainty prior to the action. For example, rolling a die, flipping a coin, etc. </li>
+<li>The set of all outcomes of an experiences is called the outcome space.</li>
+<li>An event is a subset of a sample space.</li>
+<li>Cumulative Distribution Function (CDF):  
+        The CDF of a random variable \(X\) gives the probability that \(X\) is less than or equal to a value \(x\).  
+        It is defined as  
+        \[
+        F(x) = P(X \le x).
+        \]  
+        The CDF increases from 0 to 1 and describes how probability accumulates across the range of possible values.
+    </li>
+
+    <li>Discrete Distribution:
+        A discrete distribution describes random variables that take on <i>countable</i> values, such as 0, 1, 2, …  
+        Probabilities are assigned using a probability mass function \(P(X=x)\), which must satisfy  
+        \[
+        \sum_x P(X = x) = 1.
+        \]  
+        Examples include the binomial and Poisson distributions.
+    </li>
+
+    <li>Probability Density Function (PDF):  
+        A PDF describes continuous random variables.  
+        The function \(f(x)\) itself is not a probability; instead, probabilities come from the <i>area under the curve</i>, such as  
+        \[
+        P(a \le X \le b) = \int_a^b f(x)\, dx.
+        \]  
+        A valid PDF must satisfy \(f(x) \ge 0\) and  
+        \[
+        \int_{-\infty}^{\infty} f(x)\, dx = 1.
+        \]
+    </li>
+</ul>
+</p>
+
+<h1>Discrete Distributions</h1>
+
+<h2>Binomial Distribution</h2>
+<p>
+The binomial distribution models the number of “successes” observed in \(n\) independent trials, each with success probability \(p\).  
+<br><br>
+\[
+P(X=x)=\binom{n}{x}p^{x}(1-p)^{\,n-x},\quad x=0,1,\dots,n
+\]
+Mean = \(np\), Var = \(np(1-p)\)
+</p>
+
+<h2>Poisson Distribution</h2>
+<p>
+The Poisson distribution describes counts of events that occur randomly through time or space at an average rate \(\lambda\).  
+<br><br>
+\[
+P(X=x)=\dfrac{e^{-\lambda}\lambda^{x}}{x!},\quad x=0,1,2,\dots
+\]
+Mean = \(\lambda\), Var = \(\lambda\)
+<br><br>
+It is often used as an approximation to the binomial distribution when \(n\) is large and \(p\) is small.
+</p>
+
+<h1>Continuous Distributions</h1>
+
+<h2>Uniform Distribution</h2>
+<p>
+A uniform distribution assigns equal probability density to all values between \(a\) and \(b\).  
+<br><br>
+\[
+f(x)=\begin{cases}
+\frac{1}{b-a}, & a \le x \le b,\\[6pt]
+0, & \text{otherwise}
+\end{cases}
+\]
+Mean = \( \frac{a+b}{2} \), Var = \( \frac{(b-a)^2}{12} \)
+</p>
+
+<h2>Normal Distribution</h2>
+<p>
+The normal distribution is the famous “bell curve,” fully determined by mean \(\mu\) and variance \(\sigma^2\). Many natural phenomena and statistical methods rely on it.  
+<br><br>
+\[
+f(x)=\frac{1}{\sqrt{2\pi\sigma^2}}
+\exp\!\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)
+\]
+Mean = \( \mu \), Var = \( \sigma^2 \)
+</p>
+
+<h2>Chi-Squared Distribution</h2>
+<p>
+A chi-square distribution arises as the distribution of a sum of squared standard normal variables. It is widely used in inference for variance estimates and tests of independence.  
+<br><br>
+\[
+f(x)=\frac{1}{2^{k/2}\Gamma(k/2)} x^{k/2 - 1} e^{-x/2},\qquad x>0
+\]
+Mean = \(k\), Var = \(2k\)
+</p>
+
+<p>
+There are many resources to help visualize these distributions! <br>
+<a href="https://www.acsu.buffalo.edu/~adamcunn/probability/chisquared.html">
+<img src="distwebpage.png" style="width:480px;height:480px;">
+</a>
+<br>Click the image to visit the “Probability Playground.”
+</p>
+
+<h1>Central Limit Theorem</h1>
+
+<p>
+If \(X_1, X_2, \dots, X_n\) are independent and identically distributed with  
+\(\mathbb{E}[X_i]=\mu\) and \(\mathrm{Var}(X_i)=\sigma^2 < \infty\), then their sample mean
+</p>
+
+\[
+\bar{X}_n = \frac{1}{n}\sum_{i=1}^{n} X_i
+\]
+
+<p>
+becomes approximately normal as \(n\) becomes large:
+</p>
+
+\[
+\frac{\bar{X}_n - \mu}{\sigma / \sqrt{n}}
+\;\xrightarrow{d}\;
+\mathcal{N}(0,1)
+\]
+
+<p>
+The CLT explains why averages tend to form bell-shaped curves, even when the underlying distribution is not normal! The image below links to a website that allows you to play around with distributions and their averages.
+</p>
+
+<p>
+<a href="https://cdn.serc.carleton.edu/images/introgeo/teachingwdata/CntrlLt100.jpg">
+<img src="clt.png" style="width:480px;height:480px;">
+</a>
+</p>
+
+<h1>Confidence Intervals</h1>
+<p>
+A confidence interval gives a range of plausible values for an unknown population parameter (such as a mean). To clear up any common confusions:
+A \(95\%\) CI does not mean there is a 95% chance the true parameter is inside your specific interval. It means that if you repeatedly collected data and built new intervals, about 95% of those intervals would contain the TRUE value.
+</p>
+
+<p>General form:</p>
+
+\[
+\text{estimate} \;\pm\; (\text{critical value}) \times (\text{standard error})
+\]
+
+<p>
+Examples:  
+• CI for a mean with known variance:  
+\[
+\bar{X} \pm z_{\alpha/2}\,\frac{\sigma}{\sqrt{n}}
+\]
+• CI for a proportion:  
+\[
+\hat{p} \pm z_{\alpha/2}\,\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}
+\]
+</p>
+
+<p>
+Confidence intervals give a sense of estimation <b>precision</b>.  
+Narrow intervals → more certainty.  
+Wide intervals → less certainty.
+</p>
+
+<h1>Hypothesis Testing</h1>
+<p>
+Hypothesis testing provides a structured way to make decisions using data.  
+We compare evidence from a sample to a claim about a population.
+</p>
+
+<p>Steps:</p>
+<ol>
+<li>State the null hypothesis \(H_0\).</li>
+<li>State the alternative hypothesis \(H_a\) or the investigative question.</li>
+<li>Compute a test statistic (z, t, etc.) that measures discrepancy between data and \(H_0\).</li>
+<li>Compute a p-value: probability of observing data this extreme if \(H_0\) were true.</li>
+<li>Make a decision:
+    <ul>
+        <li>If p-value < significance level \(\alpha\) → reject \(H_0\)</li>
+        <li>Otherwise → fail to reject \(H_0\)</li>
+    </ul>
+</li>
+</ol>
+
+<p>
+Hypothesis tests don't prove anything with certainty; they simply measure how surprising the data are under the assumption that \(H_0\) is true.
+</p>
+
+</body>
+
+<footer>
+<a href="index.html>"Previous</a> OR <a href="ch5.html">Next Chapter</a>
+</footer>
+</html>

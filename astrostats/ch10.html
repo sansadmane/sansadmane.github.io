@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="sansadmane.github.io/stylesheet.css">
+<title>Chapter 10: Truncated and Censored Data</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Menu container */
+    .menu {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+    }
+
+    /* Button */
+    .menu button {
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    /* Dropdown content */
+    .dropdown {
+        display: none;
+        position: absolute;
+        right: 0;
+        background: #fff;
+        border: 1px solid #ccc;
+        min-width: 150px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        z-index: 10;
+    }
+
+    .dropdown a {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        color: #333;
+    }
+
+    .dropdown a:hover {
+        background: #f0f0f0;
+    }
+
+    /* Show the menu when hovering */
+    .menu:hover .dropdown {
+        display: block;
+    }
+</style>
+</head>
+<body>
+
+<!-- TOP RIGHT DROPDOWN -->
+<div class="menu">
+    <button>Chapters</button>
+    <div class="dropdown">
+	<a href="index.html">Main Page</a>
+        <a href="ch1.html">Chapter 1</a>
+        <a href="ch5.html">Chapter 5</a>
+        <a href="ch6.html">Chapter 6</a>
+	<a href="ch7.html">Chapter 7</a>
+        <a href="ch8.html">Chapter 8</a>
+        <a href="ch1.html">Chapter 9</a>
+        <a href="ch11.html">Chapter 11</a>
+        <a href="ch12.html">Chapter 12</a>
+    </div>
+</div>
+
+<h1>Truncated and Censored Data</h1>
+<p>
+Truncation refers to objects in a dataset that are entirely missing (including undetected objects). Censored data contains lower/upper limits. Upper limits refer to left-censored data points. From handling these types of this data, we want: correlations when upper limits are present, distribution functions, regression, and to discuss what to do IF ANYTHING with these truncated data sets.
+</p>
+
+<ul>
+
+<li>Survival analysis is used to study the time until an event occurs, such as machine failure, death, relapse, or arrival of an event of interest.</li>
+
+<li>The survival time is typically modeled as a nonnegative random variable \(T\) with:
+    <ul>
+        <li>the survival function \(S(t) = P(T > t)\),</li>
+        <li>the cumulative distribution function \(F(t) = P(T \le t)\),</li>
+        <li>the probability density function \(f(t) = F'(t)\),</li>
+        <li>the hazard function  
+        \[
+        h(t) = \frac{f(t)}{S(t)}.
+        \]</li>
+    </ul>
+</li>
+
+<li>Censoring refers to incomplete observation of the event time.
+    <ul>
+        <li>Right censoring: the event has not occurred by the end of study; we only know \(T > C\).</li>
+        <li>Left censoring: event occurs before observation starts; we only know \(T < C\).</li>
+        <li>Interval censoring: event occurs in an unknown interval \([L, R]\).</li>
+        <li>Right censoring is the most common and is directly supported by Kaplan–Meier estimation.</li>
+    </ul>
+</li>
+
+<li>Truncation occurs when the only individuals included in the dataset are those whose event times fall within an observable window.
+    <ul>
+        <li>Left truncation: subjects enter the study only if \(T > L\) (must survive past an entry time).</li>
+        <li>Right truncation: subjects appear only if \(T < R\) (less common, arises in retrospective studies).</li>
+        <li>Truncation affects the risk set and requires adjusted likelihoods for valid estimation.</li>
+    </ul>
+</li>
+
+<li>The Kaplan–Meier estimator (KM estimator) is a nonparametric estimator of the survival function that correctly handles right-censored data.
+    <ul>
+        <li>The KM estimate is defined as  
+        \[
+        \hat{S}(t) = \prod_{t_i \le t} \left(1 - \frac{d_i}{n_i}\right)
+        \]
+        where  
+        \(t_i\) = distinct event times,  
+        \(d_i\) = number of events at time \(t_i\),  
+        \(n_i\) = number at risk just prior to \(t_i\).</li>
+
+        <li>The estimate is a step function that drops at observed event times and remains flat during censored intervals.</li>
+
+        
+    </ul>
+</li>
+
+<li>Kaplan–Meier with left-truncated data adjusts the risk sets.
+    <ul>
+        <li>At each event time \(t_i\), only individuals who have already entered the study (i.e., whose entry time \(L_j \le t_i\)) are counted in the risk set.</li>
+        <li>The KM estimator formula remains the same, but \(n_i\) is computed using the truncated risk set.</li>
+        <li>This allows valid estimation when subjects become observable only after surviving a certain time.</li>
+    </ul>
+</li>
+
+<li>Survival curves can be compared between groups using the log-rank test, which tests the null hypothesis that survival functions are equal across groups.</li>
+<li>The Cox Proportional Hazards Model is a semiparametric model used to relate survival time to covariates without assuming a specific baseline distribution for survival times.
+    <ul>
+        <li>The hazard function for an individual with covariate vector \(x\) is modeled as
+        \[
+        h(t \mid x) = h_0(t) \exp(\beta^\top x)
+        \]
+        where  
+        \(h_0(t)\) = baseline hazard (unspecified),  
+        \(\beta\) = regression coefficients describing covariate effects.</li>
+
+        <li>The model is called “proportional hazards” because the ratio of hazards for any two individuals is constant over time:
+        \[
+        \frac{h(t \mid x_1)}{h(t \mid x_2)} 
+        = \exp\!\big(\beta^\top (x_1 - x_2)\big).
+        \]
+        Thus, covariates multiply the hazard over time, painting the same shape.</li>
+
+        <li>The Cox model is fitted using partial likelihood rather than full likelihood.</li>
+
+        <li>No assumptions are made about \(h_0(t)\), so the model is flexible but still provides interpretable effect sizes.</li>
+    </ul>
+</li>
+
+<li>Hazard ratios describe how covariates affect the hazard (event rate) over time.
+    <ul>
+        <li>The hazard ratio (HR) comparing two individuals with covariate values \(x_1\) and \(x_2\) is
+        \[
+        HR = \exp\!\big(\beta^\top (x_1 - x_2)\big).
+        \]</li>
+
+        <li>For a single covariate \(x\) with coefficient \(\beta\), increasing \(x\) by one unit multiplies the hazard by
+        \[
+        HR = \exp(\beta).
+        \]</li>
+
+        <li>This is how to interpret the values.
+            <ul>
+                <li>\(\exp(\beta) > 1\): higher hazard (event occurs sooner).</li>
+                <li>\(\exp(\beta) < 1\): lower hazard (event occurs later).</li>
+                <li>\(\exp(\beta) = 1\): no effect on hazard.</li>
+            </ul>
+        </li>
+
+        <li>Hazard ratios are relative measures: they compare rates of occurrence but do not directly translate to differences in survival times.</li>
+
+    </ul>
+</li>
+
+
+</ul>
+
+
+</body>
+
+<footer>
+<a href="ch9.html">Previous</a> OR <a href="ch11.html">Next Chapter</a>
+</footer>
+</html>
+</html>

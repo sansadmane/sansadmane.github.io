@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="sansadmane.github.io/stylesheet.css">
+<title>Chapter 5: Nonparametrics</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .menu {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+    }
+
+    .menu button {
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .dropdown {
+        display: none;
+        position: absolute;
+        right: 0;
+        background: #fff;
+        border: 1px solid #ccc;
+        min-width: 150px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        z-index: 10;
+    }
+
+    .dropdown a {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        color: #333;
+    }
+
+    .dropdown a:hover {
+        background: #f0f0f0;
+    }
+
+    .menu:hover .dropdown {
+        display: block;
+    }
+</style>
+</head>
+<body>
+
+<!-- TOP RIGHT DROPDOWN -->
+<div class="menu">
+    <button>Chapters ▼</button>
+    <div class="dropdown">
+        <a href="index.html">Main Menu</a>
+        <a href="ch1.html">Chapter 1</a>
+        <a href="ch6.html">Chapter 6</a>
+        <a href="ch7.html">Chapter 7</a>
+        <a href="ch8.html">Chapter 8</a>
+        <a href="ch9.html">Chapter 9</a>
+        <a href="ch10.html">Chapter 10</a>
+        <a href="ch11.html">Chapter 11</a>
+        <a href="ch12.html">Chapter 12</a>
+    </div>
+</div>
+
+<h1>Nonparametric Statistics</h1>
+<p>There are two categories of nonparametric statistics:
+procedures that do not involve/depend on parametric assumptions, and methods that do not require that the data belong to a particular parametric family of distributions.
+</p>
+<p>
+<ul>
+
+    <li>Kolmogorov–Smirnov (KS) Test:<br>
+        The KS test compares a sample distribution to a theoretical distribution (one-sample) or compares two samples (two-sample).  
+        It is based on the largest difference between empirical cumulative distribution functions (ECDFs).
+        <br><br>
+         ECDF:   
+        \[
+        F_n(x) = \frac{1}{n}\sum_{i=1}^n I(X_i \le x)
+        \]
+       
+    </li>
+	<br>
+It can be easier to understand with a visual: <img src = "kstest.png" style="width:480px;height:480px;">.
+    <br>
+
+    <li> Two-Sample Nonparametric Tests (Mann–Whitney U / Wilcoxon Rank-Sum): <br>
+        These tests compare two independent samples without assuming normality.  
+        All observations are ranked together, and the rank sums between groups are compared.
+        <br><br>
+         Rank-sum statistic for sample 1:   
+        \[
+        U_1 = R_1 - \frac{n_1(n_1+1)}{2}
+        \]
+        where \(R_1\) is the sum of ranks for sample 1.
+        <br><br>
+        The test statistic \(U\) measures how separated the ranks are between groups.  
+        If one distribution tends to have larger values, its ranks will be larger.
+    </li>
+
+    <br>
+
+   
+<li>
+The Mann–Whitney U statistic compares two independent samples by evaluating how often values from one group exceed values from the other.
+<br><br>
+ Mean of U: 
+\[
+\mu_U = \frac{n_1 n_2}{2}
+\]
+ Variance of U (no ties): 
+\[
+\sigma_U^2 = \frac{n_1 n_2 (n_1 + n_2 + 1)}{12}
+\]
+where  
+\( n_1 \) = sample size of group 1,  
+\( n_2 \) = sample size of group 2.
+</li>
+
+ <li>K-Sample Tests (Kruskal–Wallis Test):<br>
+        The Kruskal–Wallis is an extension of MWW rank-based testing to more than two groups.  
+        It tests whether at least one distribution differs from the others.
+        <br><br>
+  
+    </li>
+    <br>
+
+    <li>Contingency Tables:<br>
+        A contingency table displays the frequency counts for two categorical variables.  
+        These tables are analyzed using the chi-square test of independence. Here is an example of one: <br>
+<img src = "contable.png" style="width:480px;height:240px;">
+        <br><br>
+         Expected count:   
+        \[
+        E_{ij} = \frac{(\text{row total})_i \cdot (\text{column total})_j}{\text{grand total}}
+        \]
+         Chi-square statistic:   
+        \[
+        \chi^2 = \sum_{i}\sum_{j} \frac{(O_{ij} - E_{ij})^2}{E_{ij}}
+        \]
+        where \(O_{ij}\) are observed counts.  
+        Large \(\chi^2\) values suggest association between the variables.
+    </li>
+
+</ul>
+</p>
+</body>
+
+<footer>
+<a href="ch1.html">Previous</a> OR <a href="ch6.html">Next Chapter</a>
+</footer>
+</html>

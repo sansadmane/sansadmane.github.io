@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="sansadmane.github.io/stylesheet.css">
+<title>Chapter 8: Multivariate Analysis</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Menu container */
+    .menu {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+    }
+
+    /* Button */
+    .menu button {
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    /* Dropdown content */
+    .dropdown {
+        display: none;
+        position: absolute;
+        right: 0;
+        background: #fff;
+        border: 1px solid #ccc;
+        min-width: 150px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        z-index: 10;
+    }
+
+    .dropdown a {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        color: #333;
+    }
+
+    .dropdown a:hover {
+        background: #f0f0f0;
+    }
+
+    /* Show the menu when hovering */
+    .menu:hover .dropdown {
+        display: block;
+    }
+</style>
+</head>
+<body>
+
+<!-- TOP RIGHT DROPDOWN -->
+<div class="menu">
+    <button>Chapters</button>
+    <div class="dropdown">
+	<a href="index.html">Main Page</a>
+        <a href="ch1.html">Chapter 1</a>
+        <a href="ch5.html">Chapter 5</a>
+        <a href="ch6.html">Chapter 6</a>
+        <a href="ch7.html">Chapter 7</a>
+        <a href="ch9.html">Chapter 9</a>
+        <a href="ch10.html">Chapter 10</a>
+        <a href="ch11.html">Chapter 11</a>
+        <a href="ch12.html">Chapter 12</a>
+    </div>
+</div>
+
+<h1>Multivariate Analysis</h1>
+<p>
+A dataset with n objects and p variables, where n > p, is an ideal case for use of multivariate statistics. The main goals of this are to quantify the distribution of this data in p-space, reduce the number of variables if possible, investigate dependencies between variables, and predict the location of future objects.
+</p>
+
+
+<ul>
+    <li>Minkowski Metric (Distance): Measures distance between points \(x=(x_1,\dots,x_p)\) and \(y=(y_1,\dots,y_p)\):
+    \[
+    D_m(x,y) = \left(\sum_{i=1}^{p} |x_i - y_i|^m\right)^{1/m}
+    \]
+    Special cases:
+    <ul>
+        <li>m=1: Manhattan distance \(D_1 = \sum_i |x_i - y_i|\)</li>
+        <li>m=2: Euclidean distance \(D_2 = \sqrt{\sum_i (x_i - y_i)^2}\)</li>
+        <li>m → ∞: Chebyshev distance \(D_\infty = \max_i |x_i - y_i|\)</li>
+    </ul>
+    </li>
+
+    <li>Multiple Linear Regression: Models a response as a linear combination of predictors.
+    \[
+    Y = \beta_0 + \beta_1 X_1 + \dots + \beta_p X_p + \varepsilon
+    \]
+  
+  Some notes include about multiple linear regression:
+    <ul>
+        <li>Assumes linearity, independence, constant variance, and normal errors.</li>
+        <li>Partial effects are interpreted while holding others constant.</li>
+        <li>Multicollinearity inflates variances of \(\hat{\beta}_i\).</li>
+    </ul>
+    </li>
+
+    <li>Principal Component Analysis (PCA): Reduces dimensionality while preserving variance.
+    <ul>
+        <li>Standardize data (mean 0, optional unit variance).</li>
+        <li>Covariance matrix: \(\mathbf{S} = \frac{1}{n-1}\mathbf{X}^\top\mathbf{X}\)</li>
+        <li>Eigen-decomposition: \(\mathbf{S} = \mathbf{V}\boldsymbol{\Lambda}\mathbf{V}^\top\)</li>
+        <li>Principal components: \(\text{PC}_k = \mathbf{X}\mathbf{v}_k\)</li>
+        <li>Proportion of variance explained: \(\text{PVE}_k = \frac{\lambda_k}{\sum_i \lambda_i}\)</li>
+    </ul>
+    Components are orthogonal; used for visualization, noise reduction, and high-dimensional data. Let's see an image of how we can visualize the change in axes. <br>
+<img src="pca.png" style="width:480px; height:480px;">
+
+<br>
+    </li>
+
+    <li>Factor Analysis (FA): Explains correlations among observed variables, specifically shared variances (unlike PCA, which explains total variance).
+    </li>
+
+    <li>Canonical Correlation Analysis (CCA): Finds linear combinations of two sets of variables (\(\mathbf{X}\) and \(\mathbf{Y}\)) that maximize correlation. This measures shared structures between two multivariate datasets, where the first canonical pair has the most cross-covariance, subsequent pairs are orthogonal.
+    </li>
+
+
+</ul>
+
+
+</body>
+
+<footer>
+<a href="ch7.html">Previous</a> OR <a href="ch9.html">Next Chapter</a>
+</footer>
+</html>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="sansadmane.github.io/stylesheet.css">
+<title>Chapter 9: Clustering</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Menu container */
+    .menu {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+    }
+
+    /* Button */
+    .menu button {
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    /* Dropdown content */
+    .dropdown {
+        display: none;
+        position: absolute;
+        right: 0;
+        background: #fff;
+        border: 1px solid #ccc;
+        min-width: 150px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        z-index: 10;
+    }
+
+    .dropdown a {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        color: #333;
+    }
+
+    .dropdown a:hover {
+        background: #f0f0f0;
+    }
+
+    /* Show the menu when hovering */
+    .menu:hover .dropdown {
+        display: block;
+    }
+</style>
+</head>
+<body>
+
+<!-- TOP RIGHT DROPDOWN -->
+<div class="menu">
+    <button>Chapters</button>
+    <div class="dropdown">
+	<a href="index.html">Main Page</a>
+        <a href="ch1.html">Chapter 1</a>
+        <a href="ch5.html">Chapter 5</a>
+        <a href="ch6.html">Chapter 6</a>
+	<a href="ch7.html">Chapter 7</a>
+        <a href="ch8.html">Chapter 8</a>
+        <a href="ch10.html">Chapter 10</a>
+        <a href="ch11.html">Chapter 11</a>
+        <a href="ch12.html">Chapter 12</a>
+    </div>
+</div>
+
+<h1>Clustering, classification and data mining</h1>
+<p>
+Clustering aims to estimate subpopulations from datasets, and classification refer to situations where training datasets of known populations are already available, independent from the current dataset. This particular approach can be very subjective because our own eyes might detect groupings on our own that do not match what the algorithms produce. The question then becomes, change the algorithm, or change our expectations?
+</p>
+
+<ul>
+
+<li>Clustering and classification are methods used to organize data based on similarity or group membership.  
+    <ul>
+        <li>Clustering is unsupervised: groups are discovered from the data without prior labels.</li>
+        <li>Classification is supervised: new observations are assigned to predefined groups based on training data.</li>
+    </ul>
+</li>
+
+<li>Definitions and scopes:
+    <ul>
+        <li>Cluster: a subset of objects that are more similar to each other than to objects in other clusters.</li>
+        <li>Classification: mapping objects to known categories or classes.</li>
+        <li>Distance or similarity measures (e.g., Euclidean, Manhattan, Minkowski) are key to clustering.</li>
+    </ul>
+</li>
+
+<li>Agglomerative Hierarchical Clustering: builds a tree (dendrogram) of nested clusters.
+    <ul>
+        <li>Starts with each observation as a single cluster.</li>
+        <li>Iteratively merges the two closest clusters based on a linkage criterion:</li>
+        <ul>
+            <li>Single linkage: minimum distance between cluster members</li>
+            <li>Complete linkage: maximum distance between cluster members</li>
+            <li>Average linkage: average distance between cluster members</li>
+        </ul>
+        <li>Dendrograms help visualize cluster relationships and choose the number of clusters.</li>
+    </ul>
+</li>
+
+<li>k-means and nonhierarchical partitioning:
+    <ul>
+        <li>k-means partitions n observations into k clusters by minimizing the within-cluster sum of squares (WCSS):
+        \[
+        \sum_{j=1}^{k} \sum_{x_i \in C_j} \| x_i - \mu_j \|^2
+        \]
+        where \(\mu_j\) is the centroid of cluster \(C_j\).</li>
+        <li>Algorithm: initialize centroids, assign points to nearest centroid, update centroids, repeat until convergence.</li>
+        <li>Variants include k-medoids (centroid must be an actual data point) and fuzzy c-means (soft clustering).</li>
+    </ul>
+</li>
+Here is a really good website to visualize different types of clustering, which can be a little more helpful than just word definitions, and shows a step by step of the analysis (I am a Buckeyes fan): <br>
+<a href = "https://clustering-visualizer.web.app/dbscan"><img src = "clustering.png" style="height:300px;width:480px;"></a>
+<li>Supervised Classification:
+    <ul>
+        <li>Assigns new observations to known groups using labeled training data.</li>
+        <li>Multivariate normal clusters: assume each class follows a multivariate normal distribution.</li>
+
+    </ul>
+</li>
+
+<li>Random Forests:
+    <ul>
+        <li>An ensemble learning method for classification (and regression) using many decision trees.</li>
+        <li>Each tree is trained on a bootstrap sample of the data, and only a random subset of predictors is considered at each split.</li>
+        <li>Predictions are made by majority vote across all trees for classification, or average for regression.</li>
+        <li>Advantages: robust to overfitting, handles high-dimensional data, provides variable importance measures.</li>
+    </ul>
+</li>
+
+</ul>
+
+</body>
+
+<footer>
+<a href="ch8.html">Previous</a> OR <a href="ch10.html">Next Chapter</a>
+</footer>
+</html>
+</html>

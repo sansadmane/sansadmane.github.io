@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="sansadmane.github.io/stylesheet.css">
+<title>Chapter 11: Time Series</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Menu container */
+    .menu {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+    }
+
+    /* Button */
+    .menu button {
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    /* Dropdown content */
+    .dropdown {
+        display: none;
+        position: absolute;
+        right: 0;
+        background: #fff;
+        border: 1px solid #ccc;
+        min-width: 150px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        z-index: 10;
+    }
+
+    .dropdown a {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        color: #333;
+    }
+
+    .dropdown a:hover {
+        background: #f0f0f0;
+    }
+
+    /* Show the menu when hovering */
+    .menu:hover .dropdown {
+        display: block;
+    }
+</style>
+</head>
+<body>
+
+<!-- TOP RIGHT DROPDOWN -->
+<div class="menu">
+    <button>Chapters</button>
+    <div class="dropdown">
+	<a href="index.html">Main Page</a>
+        <a href="ch1.html">Chapter 1</a>
+        <a href="ch5.html">Chapter 5</a>
+        <a href="ch6.html">Chapter 6</a>
+	<a href="ch7.html">Chapter 7</a>
+        <a href="ch8.html">Chapter 8</a>
+        <a href="ch9.html">Chapter 9</a>
+        <a href="ch10.html">Chapter 10</a>
+        <a href="ch12.html">Chapter 12</a>
+    </div>
+</div>
+
+<h1>Time Series Analysis</h1>
+<ul>
+
+<li>Time series analysis focuses on data collected over time, where observations could be correlated with past values.  
+    It aims to describe temporal patterns, make forecasts, and understand what is happening in time.
+</li>
+
+<li>Basic components of a time series:
+    <ul>
+        <li>Trend – long-term increase or decrease.</li>
+        <li>Seasonality – systematic patterns repeating over fixed periods.</li>
+        <li>Cyclic behavior – longer-term oscillations without fixed frequency.</li>
+        <li>Noise – random variation not explained by structure.</li>
+    </ul>
+</li>
+
+<li>Autocorrelation and partial autocorrelation:
+    <ul>
+        <li>The autocorrelation function (ACF) measures correlation between \(X_t\) and \(X_{t-k}\).</li>
+        <li>The partial autocorrelation function (PACF) removes intermediate lags to isolate direct dependence.</li>
+        <li>ACF and PACF plots help identify model structure.</li>
+    </ul>
+</li>
+
+<li>AR, MA, and ARMA models describe linear dependence between a time series and its own past values.
+    <ul>
+        <li>Autoregressive (AR\((p)\)) model:
+        \[
+        X_t = \phi_1 X_{t-1} + \cdots + \phi_p X_{t-p} + \varepsilon_t.
+        \]
+        </li>
+
+        <li>Moving Average (MA\((q)\)) model:
+        \[
+        X_t = \varepsilon_t + \theta_1 \varepsilon_{t-1} + \cdots + \theta_q \varepsilon_{t-q}.
+        \]
+        </li>
+
+        <li>ARMA\((p,q)\) combines past observations and past errors.</li>
+    </ul>
+</li>
+
+<li>ARIMA models incorporate differencing to make non-stationary data stationary:
+    <ul>
+        <li>ARIMA\((p,d,q)\) model:
+        <ul>
+            <li>\(d\) = number of differences to remove trend.</li>
+            <li>Useful for general forecasting of non-stationary series.</li>
+        </ul>
+        </li>
+    </ul>
+</li>
+
+<li>Exponential smoothing methods offer flexible forecasting approaches.
+
+Simple exponential smoothing (SES) is used for stationary data with no trend.
+
+
+</li>
+
+
+<li>Frequency-domain analysis:
+    <ul>
+        <li>The spectral density function describes how variance is distributed across frequencies.</li>
+        <li>Useful for identifying periodic behavior.</li>
+        <li>The periodogram provides an empirical estimate of dominant frequencies.</li>
+    </ul>
+</li>
+
+
+<li>Common accuracy metrics include MSE, RMSE, MAE, MAPE, and cross-validation on rolling windows. Residual diagnostics check whether any remaining structure in the data is random.
+</li>
+
+</ul>
+
+</body>
+
+<footer>
+<a href="ch10.html">Previous</a> OR <a href="ch12.html">Next Chapter</a>
+</footer>
+</html>
+</html>

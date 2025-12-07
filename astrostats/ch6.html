@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="stylesheet" href="sansadmane.github.io/stylesheet.css">
+<title>Chapter 6: Data Smoothing</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Menu container */
+    .menu {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+    }
+
+    /* Button */
+    .menu button {
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    /* Dropdown content */
+    .dropdown {
+        display: none;
+        position: absolute;
+        right: 0;
+        background: #fff;
+        border: 1px solid #ccc;
+        min-width: 150px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        z-index: 10;
+    }
+
+    .dropdown a {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        color: #333;
+    }
+
+    .dropdown a:hover {
+        background: #f0f0f0;
+    }
+
+    /* Show the menu when hovering */
+    .menu:hover .dropdown {
+        display: block;
+    }
+</style>
+</head>
+<body>
+
+<!-- TOP RIGHT DROPDOWN -->
+<div class="menu">
+    <button>Chapters ▼</button>
+    <div class="dropdown">
+	<a href="index.html">Main Page</a>
+        <a href="ch1.html">Chapter 1</a>
+        <a href="ch5.html">Chapter 5</a>
+        <a href="ch7.html">Chapter 7</a>
+        <a href="ch8.html">Chapter 8</a>
+        <a href="ch9.html">Chapter 9</a>
+        <a href="ch10.html">Chapter 10</a>
+        <a href="ch11.html">Chapter 11</a>
+        <a href="ch12.html">Chapter 12</a>
+    </div>
+</div>
+
+<h1>Data smoothing: density estimation</h1>
+<ul>
+<li>Note about histograms: The effectiveness of a histogram can depend a lot on bin width. For this reason, it becomes subjective to use them and the intentions behind displaying a histogram a certain way should be fully explained in the text!</li>
+<!-- KDE -->
+
+<li> Kernel Density Estimation (KDE)  is a nonparametric method for estimating a probability density function using a smooth kernel centered at each data point.</li>
+
+<li>The KDE formula is:
+\[
+\hat{f}(x,h)=\frac{1}{n h}\sum_{i=1}^{n} K\!\left(\frac{x-x_i}{h}\right)
+\]
+where \(K\) is the kernel function and \(h\) is the bandwidth (smoothing parameter).</li>
+
+<li>Common kernels include:  
+Gaussian \(K(y)=\frac{1}{\sqrt{2\pi}}e^{-y^2/2}\),  
+and
+Uniform \(K(y)=\frac{1}{2}\) for \(|y|\le1\).</li>
+
+<li> Bandwidth selection  determines smoothness and is more important than the kernel choice.  
+Silverman’s rule of thumb:  
+\[
+h=0.9\cdot \min\left(\mathrm{std}(x),\frac{\mathrm{IQR}(x)}{1.34}\right)n^{-1/5}
+\]
+</li>
+
+<!-- Adaptive KDE -->
+<li> Adaptive Kernel Estimation  uses a variable bandwidth, shrinking \(h\) in dense regions and enlarging it in sparse regions for improved accuracy.</li>
+
+<li>Adaptive methods reduce oversmoothing/undersmoothing and better capture patterns when data density varies.</li>
+
+<!-- Nonparametric Regression -->
+<li> Nadaraya–Watson Estimator  is a kernel regression method that estimates the conditional mean:
+\[
+\hat{r}(x)=
+\frac{\sum_{i=1}^n y_i K\!\left(\frac{x-x_i}{h_x}\right)}
+     {\sum_{i=1}^n K\!\left(\frac{x-x_i}{h_x}\right)}
+\]
+It behaves like a locally weighted average.</li>
+
+<li> Spline smoothing  fits piecewise polynomials joined smoothly at knots, producing a flexible nonparametric regression curve without assuming a specific functional form.</li>
+<li>LOESS (Locally Estimated Scatterplot Smoothing) is a flexible nonparametric regression method that fits simple models (usually local weighted polynomials) to small neighborhoods of the data.
+It uses a smoothing parameter (the span) that determines how much of the data is used in each local fit. Smaller spans capture more detail; larger spans produce smoother curves.
+
+The method adapts to local structure, handles nonlinear relationships well, and does not assume a global functional form.
+</li>
+</ul>
+</p>
+
+</body>
+
+<footer>
+<a href="ch5.html">Previous</a> OR <a href="ch7.html">Next Chapter</a>
+</footer>
+</html>
+</html>
